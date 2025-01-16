@@ -1,2 +1,6 @@
 airflow/logs
 aws/volume
+airflow/config
+airflow/plugins
+.venv
+kafka/kafka_data

@@ -24,7 +24,7 @@ Ensure the following tools are installed on your system:
 
 ## Setup
 
-```
+```bash
 make setup
 ```
 
@@ -50,7 +50,52 @@ To stop and clean up the environment:
 make stop
 ```
 
+### Airflow Login
+
+`username`: airflow
+`password`: airflow
+
 ---
+
+Here's an improved version of the documentation with enhanced clarity, better formatting, and additional context for users:
+
+---
+
+## **Sending Kafka Messages**
+
+To send Kafka messages, you can use the `make` command with the topic of your choice.
+
+### **Usage**
+
+Run the following command, replacing `<topic-name>` with your desired Kafka topic:
+
+```bash
+make kafka-message topic=<topic-name>
+```
+
+#### Example
+To send a message to the `video.upload` topic:
+
+```bash
+make kafka-message topic=video.upload
+```
+
+---
+
+### **Message Format**
+
+Below is an example Kafka message you can send. Ensure the `key` and `value` fields are properly formatted as JSON.
+
+#### Example Message
+```
+key:{"video_id": "1234", "video_path": "niknak-raw-data/user-uploads/videos/1/1234/original.mp4", "video_provider": "s3", "user_id": 1}
+```
+---
+
+### **Notes**
+1. **Topic Name**: Ensure the topic specified in the `make` command (`topic=<topic-name>`) exists in your Kafka setup. If not, create it before running the command.
+2. **Message Structure**: The message must follow the JSON format for both the key and value fields.
+3. **Testing Locally**: If using LocalStack or a custom Kafka setup, ensure the `kafka-message` target in your `Makefile` is configured with the correct `bootstrap-server` endpoint.
 
 ### Directory Structure
 
