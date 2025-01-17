@@ -111,6 +111,10 @@ key:{"video_id": "1234", "video_path": "niknak-raw-data/user-uploads/videos/1/12
 
 ---
 
+## Localstack S3
+
+To view files in your localstack s3 buckets, you can visit http://localhost:4566/niknak-raw-data
+
 ## Customization
 
 ### Adding More AWS Services

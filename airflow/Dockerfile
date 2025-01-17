@@ -15,6 +15,9 @@ RUN pip install --no-cache-dir \
     confluent-kafka==2.8.0 \
     boto3==1.36.0 \
     smart-open==7.1.0 \
-    python-dotenv==1.0.1
+    python-dotenv==1.0.1 \
+    torch==2.5.1 \
+    torchvision==0.20.1 \
+    pillow==11.1.0
 
 COPY scripts/add_kafka_connections.py /opt/airflow/scripts/add_kafka_connections.py
