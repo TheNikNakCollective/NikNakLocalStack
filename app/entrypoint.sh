@@ -11,3 +11,6 @@ yarn install
 
 echo "Running Migrations"
 yarn migration:run
+
+echo "Starting server"
+yarn dev

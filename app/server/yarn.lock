@@ -1417,8 +1417,8 @@ __metadata:
 
 "niknak-packages@file:../../../NikNakPackages::locator=%40niknak%2Fapp-docker%40workspace%3A.":
   version: 0.0.6
-  resolution: "niknak-packages@file:../../../NikNakPackages#../../../NikNakPackages::hash=c26d83&locator=%40niknak%2Fapp-docker%40workspace%3A."
-  checksum: 10c0/b93127ba3d88940c0bde091ac040276bac4171f1f0653559add5f781b218b19da2fcf5e54feeecf180195ab31f86ec30c7215e7afdeb519302908e2505b7f659
+  resolution: "niknak-packages@file:../../../NikNakPackages#../../../NikNakPackages::hash=8ec6e8&locator=%40niknak%2Fapp-docker%40workspace%3A."
+  checksum: 10c0/a10e54fd6328a204afc375c1bc6ed891ff733eb0f5ebfa3de5338186e735fdc41c5c77c0c067c3ad023bcd0a88ee914134a0fc4524b4ba4c58077823f66b469f
   languageName: node
   linkType: hard
 

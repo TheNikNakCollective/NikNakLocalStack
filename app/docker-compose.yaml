@@ -21,9 +21,10 @@ services:
       - ../../NikNakPackages:/usr/src/NikNakPackages
       - ./server:/usr/src/NikNakLocalStack/app/server
       - ./entrypoint.sh:/entrypoint.sh
+      - /usr/src/NikNakLocalStack/app/server/node_modules # This ensures node_modules is not overwritten
+      - /usr/src/NikNakPackages/node_modules # This ensures node_modules is not overwritten
     entrypoint:
       - /entrypoint.sh
-    command: yarn dev
 
   app-db:
     image: postgres:16-alpine
