@@ -23,7 +23,7 @@ services:
       - ./entrypoint.sh:/entrypoint.sh
     entrypoint:
       - /entrypoint.sh
-    command: sleep 100000
+    command: yarn dev
 
   app-db:
     image: postgres:16-alpine
