@@ -6,6 +6,10 @@ setup:
 niknak:
 	cd aws && chmod +x setup-s3.sh
 	cd aws && docker-compose up -d
+
+	cd app && chmod +x entrypoint.sh
+	cd app && docker-compose up -d
+
 	cd kafka && docker-compose up -d
 	cd airflow && docker-compose --profile flower up -d
 

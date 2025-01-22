@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "CommonJS",
+        "baseUrl": ".",
+        "moduleResolution": "Node",
+        "outDir": "dist",
+        "importsNotUsedAsValues": "remove",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "paths": {
+            "@app/*": ["../../../NikNakPackages/packages/app/src/*"]
+        },
+    },
+    "include": ["src/**/*", "scripts/**/*"],
+    "exclude": ["node_modules"]
+}

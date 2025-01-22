@@ -1,0 +1,31 @@
+{
+    "name": "@niknak/app-docker",
+    "scripts": {
+        "dev": "esr ./scripts/main.ts --watch",
+        "build": "esr ./scripts/main.ts",
+        "typeorm": "typeorm-ts-node-esm",
+        "build:migrations": "esr ./scripts/build-datasource.ts",
+        "migration:generate": "yarn build:migrations && npx typeorm-ts-node-esm migration:generate ./migrations/schema-update -d ./src/datasource.js --outputJs",
+        "migration:run": "yarn build:migrations && npx typeorm-ts-node-esm migration:run  -d ./src/datasource.js"
+    },
+    "dependencies": {
+        "dotenv": "^16.4.7",
+        "niknak-packages": "file:../../../NikNakPackages",
+        "pg": "^8.13.1"
+    },
+    "devDependencies": {
+        "@types/node": "^22.10.7",
+        "@types/pg": "^8",
+        "chokidar": "^4.0.3",
+        "chokidar-cli": "^3.0.0",
+        "esbuild": "^0.24.2",
+        "esbuild-plugin-tsc": "^0.4.0",
+        "esbuild-runner": "^2.2.2",
+        "nodemon": "^2.0.20",
+        "ts-node": "^10.9.2",
+        "tsconfig-paths": "^4.2.0",
+        "typeorm": "0.3.20",
+        "typescript": "^5.7.3"
+    },
+    "packageManager": "yarn@4.6.0"
+}

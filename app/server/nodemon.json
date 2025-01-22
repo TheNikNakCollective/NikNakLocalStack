@@ -1,0 +1,9 @@
+{
+    "ext": "ts",
+    "ignore": [
+        "./node_modules",
+        "../../../NikNakPackages/node_modules"
+    ],
+    "exec": "ts-node -r tsconfig-paths/register -P tsconfig.json --files --scope=./ ./src/index.ts",
+    "watch": [".", "../../../NikNakPackages"]
+}

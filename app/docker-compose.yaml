@@ -1,0 +1,50 @@
+services:
+
+  app:
+    image: node:20-alpine
+    container_name: app
+    restart: always
+    depends_on:
+      app-db:
+        condition: service_healthy
+    environment:
+      PORT: 8083
+      NODE_ENV: development
+      HOST: localhost
+      COOKIE_SECRET: ''
+      PUBLIC_URL: ''
+    ports:
+      - "8083:8083"
+    networks:
+      - niknak
+    volumes:
+      - ../../NikNakPackages:/usr/src/NikNakPackages
+      - ./server:/usr/src/NikNakLocalStack/app/server
+      - ./entrypoint.sh:/entrypoint.sh
+    entrypoint:
+      - /entrypoint.sh
+    command: sleep 100000
+
+  app-db:
+    image: postgres:16-alpine
+    container_name: app-db
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: niknak
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d niknak"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    networks:
+      - niknak
+
+networks:
+  niknak:
+    external: true
