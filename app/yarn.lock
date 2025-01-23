@@ -236,9 +236,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@niknak/app-docker@workspace:.":
+"@niknak/app-docker-compose@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@niknak/app-docker@workspace:."
+  resolution: "@niknak/app-docker-compose@workspace:."
   dependencies:
     "@types/node": "npm:^22.10.7"
     "@types/pg": "npm:^8"
@@ -248,13 +248,33 @@ __metadata:
     esbuild: "npm:^0.24.2"
     esbuild-plugin-tsc: "npm:^0.4.0"
     esbuild-runner: "npm:^2.2.2"
-    niknak-packages: "file:../../../NikNakPackages"
+    niknak-packages: "file:../../NikNakPackages"
     nodemon: "npm:^2.0.20"
     pg: "npm:^8.13.1"
     ts-node: "npm:^10.9.2"
     tsconfig-paths: "npm:^4.2.0"
     typeorm: "npm:0.3.20"
     typescript: "npm:^5.7.3"
+  languageName: unknown
+  linkType: soft
+
+"@niknak/app-docker@workspace:server":
+  version: 0.0.0-use.local
+  resolution: "@niknak/app-docker@workspace:server"
+  dependencies:
+    esbuild: "npm:^0.24.2"
+    esbuild-plugin-tsc: "npm:^0.4.0"
+    esbuild-runner: "npm:^2.2.2"
+  languageName: unknown
+  linkType: soft
+
+"@niknak/ingestor-docker@workspace:ingestor":
+  version: 0.0.0-use.local
+  resolution: "@niknak/ingestor-docker@workspace:ingestor"
+  dependencies:
+    esbuild: "npm:^0.24.2"
+    esbuild-plugin-tsc: "npm:^0.4.0"
+    esbuild-runner: "npm:^2.2.2"
   languageName: unknown
   linkType: soft
 
@@ -1415,10 +1435,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"niknak-packages@file:../../../NikNakPackages::locator=%40niknak%2Fapp-docker%40workspace%3A.":
+"niknak-packages@file:../../NikNakPackages::locator=%40niknak%2Fapp-docker-compose%40workspace%3A.":
   version: 0.0.6
-  resolution: "niknak-packages@file:../../../NikNakPackages#../../../NikNakPackages::hash=8ec6e8&locator=%40niknak%2Fapp-docker%40workspace%3A."
-  checksum: 10c0/a10e54fd6328a204afc375c1bc6ed891ff733eb0f5ebfa3de5338186e735fdc41c5c77c0c067c3ad023bcd0a88ee914134a0fc4524b4ba4c58077823f66b469f
+  resolution: "niknak-packages@file:../../NikNakPackages#../../NikNakPackages::hash=854444&locator=%40niknak%2Fapp-docker-compose%40workspace%3A."
+  checksum: 10c0/a64f13eb2c793626b7f48a76a8a07cfb8a19e9ab9ce598b1818a5cd39baa75d8e55c1b862793a4ae4972a7ce00452c851eaee215c3bec91c2b26e77bed45e3e1
   languageName: node
   linkType: hard
 

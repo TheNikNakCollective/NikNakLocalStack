@@ -1,14 +1,14 @@
 import * as esbuild from "esbuild";
 import path from "path";
-import { niknakPackagesDir, root, src } from "./paths";
+import { niknakPackagesDir, root } from "./paths";
 import esbuildPluginTsc from 'esbuild-plugin-tsc';
 
-export async function build() {
+async function build() {
   await esbuild.build({
-    entryPoints: [path.resolve(src, "index.ts")],
+    entryPoints: [path.resolve(root, "datasource.ts")],
     bundle: true,
     platform: "node",
-    outdir: path.join(root, "dist"),
+    outfile: path.join(root, "datasource.js"),
     minify: false,
     external: ["esbuild", "fsevents", "reflect-metadata"],
     banner: {},
@@ -25,3 +25,5 @@ export async function build() {
     plugins: [esbuildPluginTsc({ tsconfigPath: path.join(root, 'tsconfig.json')})]
   });
 }
+
+build();

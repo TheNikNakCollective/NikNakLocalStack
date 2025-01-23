@@ -16,6 +16,6 @@
             "@app/*": ["../../../NikNakPackages/packages/app/src/*"]
         },
     },
-    "include": ["src/**/*"],
+    "include": ["scripts/**/*"],
     "exclude": ["node_modules"]
 }

@@ -6,11 +6,14 @@ cd /usr/src/NikNakPackages
 yarn install
 
 echo "Installing NikNakLocalStack"
-cd /usr/src/NikNakLocalStack/app/server
+cd /usr/src/NikNakLocalStack/app
 yarn install
 
+echo "Building Datasource"
+yarn build:datasource
+
 echo "Running Migrations"
+cd /usr/src/NikNakLocalStack/app/server
 yarn migration:run
 
-echo "Starting server"
 yarn dev

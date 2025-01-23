@@ -7,8 +7,6 @@ dotenv.config();
 
 const migrations = `${path.resolve(__dirname, '..', 'migrations')}/*.js`;
 
-console.log(migrations);
-
 const datasource = new DataSource({
   type: "postgres",
   host: "app-db",

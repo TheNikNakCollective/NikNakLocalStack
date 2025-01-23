@@ -1,2 +1,3 @@
 pgdata
-server/src/datasource.js
+datasource.js
+node_modules

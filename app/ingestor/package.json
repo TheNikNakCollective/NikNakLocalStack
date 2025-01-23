@@ -1,0 +1,13 @@
+{
+    "name": "@niknak/ingestor-docker",
+    "scripts": {
+        "dev": "esr ../scripts/main.ts --watch",
+        "build": "esr ../scripts/main.ts",
+        "typeorm": "typeorm-ts-node-esm"
+    },
+    "devDependencies": {
+        "esbuild": "^0.24.2",
+        "esbuild-plugin-tsc": "^0.4.0",
+        "esbuild-runner": "^2.2.2"
+    }
+}
