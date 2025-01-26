@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "ESNext",
-        "module": "CommonJS",
+        "module": "ESNext",
         "baseUrl": ".",
         "moduleResolution": "Node",
         "outDir": "dist",
@@ -13,9 +13,9 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "paths": {
-            "@app/*": ["../../../NikNakPackages/packages/app/src/*"]
+            "@app/*": ["../../NikNakPackages/packages/app/src/*"]
         },
     },
-    "include": ["scripts/**/*"],
+    "include": ["scripts/**/*", "scripts/watch.ts", "scripts/paths.ts"],
     "exclude": ["node_modules"]
 }

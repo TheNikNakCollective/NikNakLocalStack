@@ -3,8 +3,10 @@ set -e
 
 cd /usr/src/NikNakLocalStack/app
 
-echo "Building Datasource..."
+echo "Running Migrations..."
 yarn build:datasource
 
 cd /usr/src/NikNakLocalStack/app/server
-yarn dev
+
+yarn migration:generate || true
+yarn migration:run || true

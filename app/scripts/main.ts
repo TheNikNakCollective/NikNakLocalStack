@@ -66,8 +66,13 @@ async function main(dir: string) {
     buildWithWatchMode(dir);
   } else {
     await buildPackages();
-    build(dir);
+    await build(dir);
   }
 }
 
-main(process.cwd());
+main(process.cwd()).then(() => {
+  console.log('Build Successful')
+}).catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

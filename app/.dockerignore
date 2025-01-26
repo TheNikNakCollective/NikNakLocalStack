@@ -1,7 +1,7 @@
 # Ignore all node_modules
-node_modules
-dist
-server/src/datasource.js
-server/yarn.lock
-server/.yarn
-.git
+# node_modules
+# dist
+# server/src/datasource.js
+# server/yarn.lock
+# server/.yarn
+# .git

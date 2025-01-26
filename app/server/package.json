@@ -2,6 +2,7 @@
     "name": "@niknak/app-docker",
     "scripts": {
         "dev": "esr ../scripts/main.ts --watch",
+        "start": "node ./dist/index.js",
         "build": "esr ../scripts/main.ts",
         "typeorm": "typeorm-ts-node-esm",
         "migration:generate": "npx typeorm-ts-node-esm migration:generate ./migrations/schema-update -d ../datasource.js --outputJs",

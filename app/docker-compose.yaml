@@ -1,12 +1,14 @@
 services:
 
   app:
-    image: node:20-alpine
+    image: niknak/server:latest
     container_name: app
     restart: always
     depends_on:
       app-db:
         condition: service_healthy
+      migrations:
+        condition: service_completed_successfully
     healthcheck:
       test: ["CMD", "wget", "--spider", "http://localhost:8083/healthcheck"]
       interval: 30s
@@ -24,24 +26,22 @@ services:
     networks:
       - niknak
     volumes:
-      - ../../NikNakPackages:/usr/src/NikNakPackages
-      - ./:/usr/src/NikNakLocalStack/app
       - ./server/entrypoint.sh:/entrypoint.sh
-      - /usr/src/NikNakLocalStack/app/node_modules # This ensures node_modules is not overwritten
-      - /usr/src/NikNakPackages/node_modules # This ensures node_modules is not overwritten
-      - /usr/src/NikNakPackages/.git # This ensures .git is not overwritten
     entrypoint:
       - /entrypoint.sh
 
   ingestor:
-    image: node:20-alpine
+    image: niknak/ingestor:latest
     container_name: ingestor
     restart: always
+    profiles: [ingest]
     depends_on:
       app-db:
         condition: service_healthy
       app:
         condition: service_healthy
+      migrations:
+        condition: service_completed_successfully
     environment:
       PORT: 8084
       NODE_ENV: development
@@ -53,14 +53,23 @@ services:
     networks:
       - niknak
     volumes:
-      - ../../NikNakPackages:/usr/src/NikNakPackages
-      - ./:/usr/src/NikNakLocalStack/app
       - ./ingestor/entrypoint.sh:/entrypoint.sh
-      - /usr/src/NikNakLocalStack/app/node_modules # This ensures node_modules is not overwritten
-      - /usr/src/NikNakPackages/node_modules # This ensures node_modules is not overwritten
-      - /usr/src/NikNakPackages/.git # This ensures .git is not overwritten
     entrypoint:
       - /entrypoint.sh
+
+  migrations:
+    image: niknak/server:latest
+    depends_on:
+      app-db:
+        condition: service_healthy
+    volumes:
+      - ./migrations.sh:/migrations.sh
+      - ./server/migrations:/usr/src/NikNakLocalStack/app/server/migrations
+      - ../../NikNakPackages/packages/orm:/usr/src/NikNakPackages/packages/orm
+    entrypoint:
+      - /migrations.sh
+    networks:
+      - niknak
 
   app-db:
     image: postgres:16-alpine

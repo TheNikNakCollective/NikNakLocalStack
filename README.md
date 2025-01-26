@@ -40,6 +40,14 @@ To bring up the entire environment (Airflow, Flower, and AWS LocalStack):
 make niknak
 ```
 
+### Develop Locally
+
+To enable hot reload run the command below, this will watch source file changes in NikNakPackages and rebuild
+the server and ingestor to apply the changes in the docker container.
+
+```bash
+make watch
+```
 ---
 
 ### Stop the Services

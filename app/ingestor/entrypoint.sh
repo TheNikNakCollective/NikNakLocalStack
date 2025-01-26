@@ -1,12 +1,11 @@
 #!/bin/sh
 set -e
 
-echo "Installing NikNakPackages"
-cd /usr/src/NikNakPackages
-yarn install
+cd /usr/src/NikNakLocalStack/app
 
-echo "Installing NikNakLocalStack"
+echo "Building Datasource..."
+yarn build:datasource
+
 cd /usr/src/NikNakLocalStack/app/ingestor
-yarn install
 
 yarn dev

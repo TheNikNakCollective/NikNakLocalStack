@@ -5,12 +5,15 @@
         "ingestor"
     ],
     "scripts": {
-        "build:datasource": "esr ./scripts/build-datasource.ts"
+        "build:datasource": "esr ./scripts/build-datasource.ts",
+        "watch": "esr ./scripts/watch.ts"
     },
     "dependencies": {
         "dotenv": "^16.4.7",
+        "execa": "5",
         "niknak-packages": "file:../../NikNakPackages",
-        "pg": "^8.13.1"
+        "pg": "^8.13.1",
+        "yaml": "^2.7.0"
     },
     "devDependencies": {
         "@types/node": "^22.10.7",
