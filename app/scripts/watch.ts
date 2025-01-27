@@ -5,9 +5,13 @@ import path from "path";
 
 async function isServiceRunning(serviceName: string) {
   try {
-    const { stdout } = await execa("docker-compose", ["ps", "--services", "--filter", "status=running"]);
-    
-    const runningServices = stdout.split("\n").map(service => service.trim());
+    const { stdout } = await execa(
+      "docker-compose",
+      ["ps", "--services", "--filter", "status=running"],
+      { cwd: paths.root }
+    );
+
+    const runningServices = stdout.split("\n").map((service) => service.trim());
     return runningServices.includes(serviceName);
   } catch (error) {
     console.error(`Error checking service status: ${(error as Error).message}`);
@@ -21,7 +25,7 @@ async function syncFile(containerPath: string, file: string) {
 
   console.log(`Copying ${file} to container path: ${targetPath}`);
 
-  const isIngestorRunning = await isServiceRunning('ingestor');
+  const isIngestorRunning = await isServiceRunning("ingestor");
 
   await execa("docker-compose", ["cp", file, `app:${targetPath}`]);
 
@@ -33,7 +37,7 @@ async function syncFile(containerPath: string, file: string) {
 async function main() {
   chokidar
     .watch([paths.niknakPackagesDir], {
-      ignored: /node_modules|\.git|\.nx|\.yarn|dist/,
+      ignored: /node_modules|\.git|\.nx|\.yarn|dist|pgdata/,
     })
     .on("change", async (file) => {
       await syncFile("/usr/src/NikNakPackages", file);
@@ -41,7 +45,16 @@ async function main() {
 
   chokidar
     .watch([paths.root], {
-      ignored: /node_modules|\.git|\.nx|\.yarn|dist/,
+      ignored: (path) => {
+        return (
+          path.includes("node_modules") ||
+          path.includes(".git") ||
+          path.includes(".nx") ||
+          path.includes(".yarn") ||
+          path.includes("dist") ||
+          path.includes("pgdata")
+        );
+      },
     })
     .on("change", async (file) => {
       await syncFile("/usr/src/NikNakLocalStack", file);

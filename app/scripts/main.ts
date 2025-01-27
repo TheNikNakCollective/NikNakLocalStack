@@ -3,7 +3,7 @@ import { build } from "./build";
 import { niknakPackagesDir, root } from "./paths";
 import { ChildProcess, spawn } from "child_process";
 import path from "path";
-import util from 'util';
+import util from "util";
 
 const spawnAsync = util.promisify(spawn);
 
@@ -37,26 +37,26 @@ function restartBuiltApp() {
 
 async function buildWithWatchMode(dir: string) {
   console.log("Running build in watch mode");
-  // await buildPackages();
-  build(dir);
+  await build(dir);
   runBuiltApp();
 
   chokidar
     .watch([dir, niknakPackagesDir], {
       ignored: (path) => {
         return (
-          path.includes("dist") ||
+          path.includes("node_modules") ||
+          path.includes(".git") ||
           path.includes(".nx") ||
           path.includes(".yarn") ||
-          path.includes(".git")
+          path.includes("dist") ||
+          path.includes("pgdata")
         );
-      }
+      },
     })
     .on("change", async (path, stats) => {
       console.log(`Changed: ${path}`);
       console.log("Rebuilding...");
-      // await buildPackages();
-      build(dir);
+      await build(dir);
       restartBuiltApp();
     });
 }
@@ -70,9 +70,11 @@ async function main(dir: string) {
   }
 }
 
-main(process.cwd()).then(() => {
-  console.log('Build Successful')
-}).catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+main(process.cwd())
+  .then(() => {
+    console.log("Build Successful");
+  })
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
