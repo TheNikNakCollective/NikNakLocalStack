@@ -2,6 +2,7 @@ import * as paths from "./paths";
 import chokidar from "chokidar";
 import execa from "execa";
 import path from "path";
+import { excludeHostFiles } from "./ignore";
 
 async function isServiceRunning(serviceName: string) {
   try {
@@ -37,7 +38,9 @@ async function syncFile(containerPath: string, file: string) {
 async function main() {
   chokidar
     .watch([paths.niknakPackagesDir], {
-      ignored: /node_modules|\.git|\.nx|\.yarn|dist|pgdata/,
+      ignored: (path) => {
+        return excludeHostFiles(path);
+      },
     })
     .on("change", async (file) => {
       await syncFile("/usr/src/NikNakPackages", file);
@@ -46,14 +49,7 @@ async function main() {
   chokidar
     .watch([paths.root], {
       ignored: (path) => {
-        return (
-          path.includes("node_modules") ||
-          path.includes(".git") ||
-          path.includes(".nx") ||
-          path.includes(".yarn") ||
-          path.includes("dist") ||
-          path.includes("pgdata")
-        );
+        return excludeHostFiles(path);
       },
     })
     .on("change", async (file) => {
