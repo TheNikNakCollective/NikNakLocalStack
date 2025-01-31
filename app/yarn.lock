@@ -1491,8 +1491,8 @@ __metadata:
 
 "niknak-packages@file:../../NikNakPackages::locator=%40niknak%2Fapp-docker-compose%40workspace%3A.":
   version: 0.0.6
-  resolution: "niknak-packages@file:../../NikNakPackages#../../NikNakPackages::hash=0650d7&locator=%40niknak%2Fapp-docker-compose%40workspace%3A."
-  checksum: 10c0/9e194c31c8c14d6abfc5242f8cddb621d0abfea8237a57f2abd82c9254e8b7899bd2963fb99a84a9b77efa89b5172bc5237ec9a73683b634ea6b42a0c162eb41
+  resolution: "niknak-packages@file:../../NikNakPackages#../../NikNakPackages::hash=8bc28a&locator=%40niknak%2Fapp-docker-compose%40workspace%3A."
+  checksum: 10c0/66c62de0dfc62e3e642e135146fc849e4a17f197be062273354d40ac5b93cf26e74b108f083986274b6cb94e234efd5f8b31359880eb05b2a38f507556071153
   languageName: node
   linkType: hard
 

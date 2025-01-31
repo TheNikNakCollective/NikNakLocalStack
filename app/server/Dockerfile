@@ -4,6 +4,11 @@ WORKDIR /usr/src/NikNakPackages
 
 COPY ./NikNakPackages .
 
+RUN apk add --no-cache openjdk17
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
+RUN java -version
+
 RUN npm i -g corepack
 RUN corepack enable
 RUN yarn set version 4.6.0

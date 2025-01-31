@@ -43,6 +43,19 @@ async function main() {
       },
     })
     .on("change", async (file) => {
+      await syncFile(
+        "/usr/src/NikNakLocalStack/app/node_modules/niknak-packages",
+        file
+      );
+    });
+
+  chokidar
+    .watch([paths.niknakPackagesDir], {
+      ignored: (path) => {
+        return excludeHostFiles(path);
+      },
+    })
+    .on("change", async (file) => {
       await syncFile("/usr/src/NikNakPackages", file);
     });
 

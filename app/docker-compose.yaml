@@ -19,7 +19,7 @@ services:
       PORT: 8083
       NODE_ENV: development
       HOST: localhost
-      COOKIE_SECRET: ''
+      COOKIE_SECRET: 'wCRUzzWf1Ok\023:YX#O,c^COKmqA6X,'
       PUBLIC_URL: ''
     ports:
       - "8083:8083"
@@ -46,7 +46,7 @@ services:
       PORT: 8084
       NODE_ENV: development
       HOST: localhost
-      COOKIE_SECRET: ''
+      COOKIE_SECRET: 'wCRUzzWf1Ok\023:YX#O,c^COKmqA6X,'
       PUBLIC_URL: ''
     ports:
       - "8084:8084"
