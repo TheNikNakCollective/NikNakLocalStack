@@ -10,7 +10,7 @@ export async function buildService(dir: string) {
     platform: "node",
     outdir: path.join(dir, "dist"),
     minify: false,
-    external: ["esbuild", "fsevents", "reflect-metadata"],
+    external: ["esbuild", "fsevents", "reflect-metadata", "@prisma/client", "prisma"],
     banner: {},
     logLevel: "silent",
     define: {},
@@ -25,4 +25,6 @@ export async function buildService(dir: string) {
     format: 'cjs',
     plugins: [esbuildPluginTsc({ tsconfigPath: path.join(dir, 'tsconfig.json')})]
   });
+
+  console.log('Output to', path.join(dir, "dist"))
 }

@@ -5,14 +5,15 @@
         "ingestor"
     ],
     "scripts": {
-        "build:datasource": "esr ./scripts/build-datasource.ts",
         "watch": "esr ./scripts/watch.ts"
     },
     "dependencies": {
+        "@prisma/client": "^6.3.0",
         "dotenv": "^16.4.7",
         "execa": "5",
         "niknak-packages": "file:../../NikNakPackages",
         "pg": "^8.13.1",
+        "reflect-metadata": "^0.2.2",
         "yaml": "^2.7.0"
     },
     "devDependencies": {
@@ -24,9 +25,10 @@
         "esbuild-plugin-tsc": "^0.4.0",
         "esbuild-runner": "^2.2.2",
         "nodemon": "^2.0.20",
+        "prisma": "^6.3.0",
+        "prisma-json-types-generator": "^3.2.2",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
-        "typeorm": "0.3.20",
         "typescript": "^5.7.3"
     },
     "packageManager": "yarn@4.6.0"

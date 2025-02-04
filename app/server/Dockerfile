@@ -4,6 +4,8 @@ WORKDIR /usr/src/NikNakPackages
 
 COPY ./NikNakPackages .
 
+RUN rm -rf node_modules
+
 RUN apk add --no-cache openjdk17
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 ENV PATH="${JAVA_HOME}/bin:${PATH}"
@@ -15,7 +17,7 @@ RUN yarn set version 4.6.0
 
 RUN yarn install --inline-builds
 
-RUN yarn build
+RUN yarn build:no-cache
 
 WORKDIR /usr/src/NikNakLocalStack/app
 
@@ -24,7 +26,6 @@ COPY ./NikNakLocalStack/app/yarn.lock .
 COPY ./NikNakLocalStack/app/.yarn/releases ./.yarn/releases
 COPY ./NikNakLocalStack/app/.yarnrc.yml .
 COPY ./NikNakLocalStack/app/scripts ./scripts
-COPY ./NikNakLocalStack/app/datasource.ts .
 COPY ./NikNakLocalStack/app/tsconfig.json .
 COPY ./NikNakLocalStack/app/server ./server
 
@@ -38,6 +39,7 @@ RUN ls
 
 WORKDIR /usr/src/NikNakLocalStack/app/server
 
+RUN yarn generate
 RUN yarn build
 
 RUN chown -R node:node /usr/src

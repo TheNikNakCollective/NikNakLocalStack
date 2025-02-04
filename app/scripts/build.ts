@@ -2,10 +2,8 @@ import chokidar from "chokidar";
 import { buildService } from "./build-service";
 import { niknakPackagesDir } from "./paths";
 import { ChildProcess, spawn } from "child_process";
-import util from "util";
 import { excludeHostFiles } from "./ignore";
-
-const spawnAsync = util.promisify(spawn);
+import execa from 'execa';
 
 let childProcess: ChildProcess | null = null;
 
@@ -21,10 +19,10 @@ function runBuiltApp() {
 
 async function buildPackages() {
   console.log("Building packages");
-  await spawnAsync("yarn", ["build"], {
+  await execa("yarn", ["build:no-cache"], {
     stdio: "inherit",
     cwd: niknakPackagesDir,
-  });
+  })
 }
 
 function restartBuiltApp() {
@@ -56,9 +54,10 @@ async function buildWithWatchMode(dir: string) {
 
 async function main(dir: string) {
   if (args.includes("--watch") || args.includes("-w")) {
-    buildWithWatchMode(dir);
+    await buildWithWatchMode(dir);
   } else {
     await buildPackages();
+    console.log('done');
     await buildService(dir);
   }
 }

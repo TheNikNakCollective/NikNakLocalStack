@@ -1,13 +1,10 @@
 import { start } from "niknak-packages/packages/ingestor/src";
-import { createDatabase } from "niknak-packages/packages/orm/src";
-import datasource from "../../datasource";
-
-const db = createDatabase(datasource);
+import prisma from "niknak-packages/packages/prisma";
 
 async function main() {
   try {
     console.log(`Starting ingestor...`);
-    await start(db)
+    await start(prisma)
   } catch (error) {
     console.error(error);
     process.exit(1);

@@ -1,15 +1,19 @@
 {
     "name": "@niknak/app-docker",
+    "version": "0.0.0",
     "scripts": {
         "dev": "esr ../scripts/build.ts --watch",
         "build": "esr ../scripts/build.ts",
-        "typeorm": "typeorm-ts-node-esm",
-        "migration:generate": "npx typeorm-ts-node-esm migration:generate ./migrations/schema-update -d ../datasource.js --outputJs",
-        "migration:run": "npx typeorm-ts-node-esm migration:run  -d ../datasource.js"
+        "generate": "prisma generate --schema ../node_modules/niknak-packages/packages/prisma/prisma/schema.prisma"
     },
     "devDependencies": {
         "esbuild": "^0.24.2",
         "esbuild-plugin-tsc": "^0.4.0",
-        "esbuild-runner": "^2.2.2"
+        "esbuild-runner": "^2.2.2",
+        "prisma": "^6.3.0",
+        "prisma-json-types-generator": "^3.2.2"
+    },
+    "dependencies": {
+        "@prisma/client": "^6.3.0"
     }
 }

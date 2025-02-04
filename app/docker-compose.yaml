@@ -21,6 +21,8 @@ services:
       HOST: localhost
       COOKIE_SECRET: 'wCRUzzWf1Ok\023:YX#O,c^COKmqA6X,'
       PUBLIC_URL: ''
+      DATABASE_URL: "postgresql://postgres:postgres@app-db:5432/niknak?schema=public"
+
     ports:
       - "8083:8083"
     networks:
@@ -48,6 +50,7 @@ services:
       HOST: localhost
       COOKIE_SECRET: 'wCRUzzWf1Ok\023:YX#O,c^COKmqA6X,'
       PUBLIC_URL: ''
+      DATABASE_URL: "postgresql://postgres:postgres@app-db:5432/niknak?schema=public"
     ports:
       - "8084:8084"
     networks:
@@ -65,8 +68,8 @@ services:
         condition: service_healthy
     volumes:
       - ./migrations.sh:/migrations.sh
-      - ./server/migrations:/usr/src/NikNakLocalStack/app/server/migrations
-      - ../../NikNakPackages/packages/orm:/usr/src/NikNakPackages/packages/orm
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@app-db:5432/niknak?schema=public"
     entrypoint:
       - /migrations.sh
     networks:

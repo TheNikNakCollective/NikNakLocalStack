@@ -20,6 +20,18 @@ async function isServiceRunning(serviceName: string) {
   }
 }
 
+async function makeDir(container: string, targetDir:string) {
+  const dir = path.dirname(targetDir);
+
+  await execa("docker-compose", [
+    "exec",
+    "-T",
+    container,
+    "sh",
+    "-c",
+    `mkdir -p ${dir}`
+  ]);
+}
 async function syncFile(containerPath: string, file: string) {
   const relativePath = path.relative(paths.niknakPackagesDir, file);
   const targetPath = path.join(containerPath, relativePath);
@@ -28,9 +40,11 @@ async function syncFile(containerPath: string, file: string) {
 
   const isIngestorRunning = await isServiceRunning("ingestor");
 
+  await makeDir("app", targetPath);
   await execa("docker-compose", ["cp", file, `app:${targetPath}`]);
 
   if (isIngestorRunning) {
+    await makeDir("ingestor", targetPath);
     await execa("docker-compose", ["cp", file, `ingestor:${targetPath}`]);
   }
 }

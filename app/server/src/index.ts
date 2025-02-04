@@ -1,12 +1,9 @@
 import { run } from "niknak-packages/packages/app/src";
-import { createDatabase } from "niknak-packages/packages/orm/src";
-import datasource from "../../datasource";
-
-const db = createDatabase(datasource);
+import prisma from "niknak-packages/packages/prisma";
 
 async function main() {
   try {
-    await run(db)
+    await run(prisma)
   } catch (error) {
     console.error(error);
     process.exit(1);
